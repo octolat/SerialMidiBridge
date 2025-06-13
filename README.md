@@ -81,9 +81,9 @@ Cant find port man --> it cant find the serial port
 key presses are kinda slow to register --> increase your baud rate, and run the python file from terminal. (running from idle console is noticably slower)
 
 ## extra: getting my midi output to sound
-you can use most DAWs to play your midi output. I have gotten it to work on [waveform free](https://www.tracktion.com/products/waveform-free).
-If you do not care for the other DAW features like editing your midi output, and just want to hear and record audio clips of your sound, i recomend a sfz player like [sforzando](https://www.plogue.com/products/sforzando.html)
-**note:** garageband is terrible with virtual midi ports. it can work, but it is very buggy, and i face issues where the midi output will just stop sounding occasionally, and it will only work if you click away and refocus the track. this seems to be a issue with garageband itself. use other software.
+you can use most DAWs to play your midi output. I have gotten it to work on [waveform free](https://www.tracktion.com/products/waveform-free).  
+If you do not care for the other DAW features like editing your midi output, and just want to hear and record audio clips of your sound, i recomend a sfz player like [sforzando](https://www.plogue.com/products/sforzando.html)  
+**note:** garageband is terrible with virtual midi ports. it can work, but it is very buggy, and i face issues where the midi output will just stop sounding occasionally, and it will only work if you click away and refocus the track. this seems to be a issue with garageband itself. use other software.  
 
 ## todo
 - test windows compaitibility
