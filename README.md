@@ -5,21 +5,6 @@ reads in serial output from any microcontroller, and translate that to midi mess
 
 ## set up
 ```
-serial_port = None
-```
-what serial port is your arduino connected to  
-- **default**: None  
-will scan for the first port with description "USB Serial" (recommended)  
-- **alternative**: set to the name of your port  
-name must be exact. you can find the name of the port with the helper function described below  
-
-```
-serial_baudrate = 1000000
-```
-baud rate you are using  
-you may use any baud rate, just make sure the arduino is using the same baud rate
-
-```
 midi_port = "IAC Driver Bus 1" 
 ```
 midi port you are using  
@@ -30,6 +15,21 @@ if you are using another software that has its own virtual port, you can change 
 - **alternative 2**: leave it be  
 if you do not want to use a preexisting virtual port, you can leave it be. the software will see that it is unable to find a preexisting port, and open up its own virtual port named "mySerialMidiBridgeVirtualPort" (macos and linux only)
 **note:** for windows users, windows does not support native virtual ports. you will need a 3rd party application that is capable of creating one to make one. Then, following the alternative, set the variable to the name of the port you have created.
+```
+serial_port = None
+```
+what serial port is your arduino connected to  
+- **default**: None  
+will scan for the first port with description "USB Serial" (recommended for macos and linux)  
+- **alternative**: set to the name of your port  
+name must be exact. you can find the name of the port with the helper function described below  
+
+```
+serial_baudrate = 1000000
+```
+baud rate you are using  
+you may use any baud rate, just make sure the arduino is using the same baud rate
+
 ```
 seperator = " "
 cmd_keyPress = 1 
@@ -71,12 +71,30 @@ void sendMessage(int command, int note){
 make sure the baud rate is also the same.  
 you can also look at the exemplar .ino file to refer. It hijacks off a broken keyboard and iterates through the multiplexer to find notes with changed states, and sends a message reflecting that.  
 
+## helper functions
+to use these, just comment out main() at the bottom and run these instead.
+```
+helper_PrintMidiPorts()
+```
+prints the name of every midi port it can output to, virtual or not. you can use these to fetch the name of a midi port you want to use, and set the midi_port variable accordingly
+```
+helper_PrintSerialPorts()
+```
+prints the name of every serial port avaliable to your computer. This is the same port you select from the arduino ide to upload your code to.  
+Connect your microcontroller before running. there will be many options which all differ depending on your os.  
+common names include  
+**macos and linux**  
+/dev/tty.usbmodemXXXX   
+/dev/tty.usbserialXXXX  
+**windows**
+COMX (idk ive never tested just see what the actual name is)
+
 ## dependicies
 depends on the time, rtmidi, serial.tools.list_ports and serial libaries. please make sure to install them.
 
 ## common isssues
 error resource busy --> close your serial monitor from arudino ide or any other serial moniter you have open  
-Cant find port man --> it cant find the serial port  
+Cant find port man --> it cant find the serial port, check your port name using the helper functions descriped above  
 [Errno 6] Device not configured --> the serial port got unplugged mid way  
 key presses are kinda slow to register --> increase your baud rate, and run the python file from terminal. (running from idle console is noticably slower)
 
